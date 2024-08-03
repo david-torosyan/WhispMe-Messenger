@@ -4,5 +4,5 @@ namespace WhispMe.BLL.AuthInterfaces;
 
 public interface IJwtTokenGenerator
 {
-    string GenerateToken(User applicationUser, IEnumerable<string> roles);
+    string GenerateToken(User user, IEnumerable<string> roles);
 }

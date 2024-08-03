@@ -26,9 +26,9 @@ public class AuthService : IAuthService
             var user = new User
             {
                 Id = Guid.NewGuid().ToString(),
-                FullName = registerRequestDto.FullName,
-                Email = registerRequestDto.Email,
-                PasswordHash = passwordHash,
+                FullName = registerRequestDto.FullName.Trim(),
+                Email = registerRequestDto.Email.Trim(),
+                PasswordHash = passwordHash.Trim(),
                 Salt = salt,
                 CreatedAt = DateTime.UtcNow
             };

@@ -14,4 +14,8 @@ public static class AppExtension
         app.UseMiddleware<ExceptionLoggingMiddleware>();
     }
 
+    public static void ConfigureRequestLoggingMiddleware(this IApplicationBuilder app)
+    {
+        app.UseMiddleware<RequestLoggingMiddleware>();
+    }
 }
