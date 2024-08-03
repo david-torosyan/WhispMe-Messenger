@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhispMe.BLL", "WhispMe.BLL\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhispMe.DAL", "WhispMe.DAL\WhispMe.DAL.csproj", "{AC1AAA64-7BDD-4F51-A1C7-C797C03A0EC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhispMe.Configuration", "WhispMe.Configuration\WhispMe.Configuration.csproj", "{4AC202FD-F064-44EE-9FF0-EFE913CD064A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhispMe.Configuration", "WhispMe.Configuration\WhispMe.Configuration.csproj", "{4AC202FD-F064-44EE-9FF0-EFE913CD064A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhispMe.DTO", "WhispMe.DTO\WhispMe.DTO.csproj", "{E864BABB-626F-43C2-AE67-1780A22B0E34}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhispMe.DTO", "WhispMe.DTO\WhispMe.DTO.csproj", "{E864BABB-626F-43C2-AE67-1780A22B0E34}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhispMe.WEB", "WhispMe.WEB\WhispMe.WEB.csproj", "{7472EF73-1654-491E-BC73-3E44F0AD1A7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{E864BABB-626F-43C2-AE67-1780A22B0E34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E864BABB-626F-43C2-AE67-1780A22B0E34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E864BABB-626F-43C2-AE67-1780A22B0E34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7472EF73-1654-491E-BC73-3E44F0AD1A7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7472EF73-1654-491E-BC73-3E44F0AD1A7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7472EF73-1654-491E-BC73-3E44F0AD1A7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7472EF73-1654-491E-BC73-3E44F0AD1A7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
