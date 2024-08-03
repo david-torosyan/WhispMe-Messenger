@@ -1,4 +1,4 @@
-﻿namespace WhispMe.DTO;
+﻿namespace WhispMe.DTO.DTOs;
 
 public class LoginRequestDto
 {

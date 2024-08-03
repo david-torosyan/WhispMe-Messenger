@@ -1,8 +1,8 @@
-﻿using WhispMe.DTO;
+﻿using WhispMe.DTO.DTOs;
 
-namespace WhispMe.BLL.Interfaces
+namespace WhispMe.BLL.Interfaces;
+
+public interface IRoomService : IBaseService<RoomDto>
 {
-    public interface IRoomService : IBaseService<RoomDto>
-    {
-    }
+    Task<RoomDto> GetRoomByNameAycnc(string roomName);
 }

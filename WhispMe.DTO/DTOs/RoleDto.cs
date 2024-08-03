@@ -1,6 +1,6 @@
-﻿namespace WhispMe.DTO;
+﻿namespace WhispMe.DTO.DTOs;
 
-public class RoomDto
+public class RoleDto
 {
     public string Id { get; set; }
 

@@ -1,4 +1,4 @@
-﻿namespace WhispMe.DTO;
+﻿namespace WhispMe.DTO.Exceptions;
 
 public class NotFoundException : Exception
 {

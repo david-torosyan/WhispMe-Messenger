@@ -5,11 +5,11 @@ public interface IBaseService<T>
 {
     Task<T> CreateAsync(T entity);
 
-    Task<T> UpdateAsync(T entity);
+    Task<T> UpdateAsync(string id, T entity);
     
-    Task<T> DeleteAsync(T entity);
+    Task<T> DeleteByIdAsync(string id);
     
-    Task<T> GetByIdAsync(Guid id);
+    Task<T> GetByIdAsync(string id);
 
     Task<IEnumerable<T>> GetWithPaginationAsync(int pageNumber, int pageSize);
 }

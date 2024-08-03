@@ -1,8 +1,11 @@
 using AutoMapper;
 using MongoDB.Driver;
+using WhispMe.API.Hubs;
 using WhispMe.API.MiddlewareExtensions;
 using WhispMe.BLL.AuthInterfaces;
 using WhispMe.BLL.AuthServices;
+using WhispMe.BLL.Interfaces;
+using WhispMe.BLL.Services;
 using WhispMe.Configuration.Mappings;
 using WhispMe.DAL.Data;
 using WhispMe.DAL.Interfaces;
@@ -21,9 +24,11 @@ builder.Services.AddScoped(sp =>
 builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSettings:JwtOptions"));
 
 // Services
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IMessageService, MessageService>();
+builder.Services.AddScoped<IRoomService, RoomService>();
 builder.Services.AddLogging();
 
 builder.Services.AddSingleton(new MapperConfiguration(cfg =>
@@ -33,6 +38,9 @@ builder.Services.AddSingleton(new MapperConfiguration(cfg =>
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+// Add SignalR services
+builder.Services.AddSignalR();
 
 // Custom extension method for JwtBearer authentication
 builder.AddAppAuthetication();
@@ -70,5 +78,7 @@ app.ConfigureExceptionLogging();
 
 app.MapControllers();
 
-app.Run();
+// Map SignalR hubs
+app.MapHub<ChatHub>("/chathub");
 
+app.Run();

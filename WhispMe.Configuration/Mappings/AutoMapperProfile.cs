@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using WhispMe.DAL.Entities;
-using WhispMe.DTO;
+using WhispMe.DTO.DTOs;
 
 namespace WhispMe.Configuration.Mappings;
 

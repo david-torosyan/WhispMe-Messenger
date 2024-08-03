@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Net;
 using WhispMe.API.Models;
-using WhispMe.DTO;
+using WhispMe.DTO.Exceptions;
 
 namespace WhispMe.API.Middlewares;
 public class ExceptionHandlingMiddleware

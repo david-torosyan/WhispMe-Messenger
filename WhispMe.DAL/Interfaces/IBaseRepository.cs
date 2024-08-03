@@ -5,7 +5,7 @@ public interface IBaseRepository<T>
 {
     Task<T> GetByIdAsync(string id);
 
-    Task<IEnumerable<T>> GetAllAsync();
+    Task<IEnumerable<T>> GetWithPaginationAsync(int pageNumber, int pageSize);
 
     Task CreateAsync(T entity);
 

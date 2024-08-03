@@ -7,7 +7,9 @@ public class Message
 
     public DateTime Timestamp { get; set; }
 
-    public string SenderUserId { get; set; }
+    public string SenderEmail { get; set; }
 
-    public string ToRoomId { get; set; }
+    public string SenderFullName { get; set; }
+
+    public string Room { get; set; }
 }

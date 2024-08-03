@@ -1,7 +1,8 @@
 ﻿using WhispMe.BLL.AuthInterfaces;
 using WhispMe.DAL.Entities;
 using WhispMe.DAL.Interfaces;
-using WhispMe.DTO;
+using WhispMe.DTO.DTOs;
+using WhispMe.DTO.Exceptions;
 
 namespace WhispMe.BLL.AuthServices;
 

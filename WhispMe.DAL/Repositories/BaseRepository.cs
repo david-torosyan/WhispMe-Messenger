@@ -21,9 +21,12 @@ public class BaseRepository<T> : IBaseRepository<T>
         return await _collection.Find(Builders<T>.Filter.Eq("_id", id)).FirstOrDefaultAsync();
     }
 
-    public async Task<IEnumerable<T>> GetAllAsync()
+    public async Task<IEnumerable<T>> GetWithPaginationAsync(int pageNumber, int pageSize)
     {
-        return await _collection.Find(Builders<T>.Filter.Empty).ToListAsync();
+        return await _collection.Find(Builders<T>.Filter.Empty)
+            .Skip((pageNumber - 1) * pageSize)
+            .Limit(pageSize)
+            .ToListAsync();
     }
 
     public async Task CreateAsync(T entity)

@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WhispMe.BLL.AuthInterfaces;
-using WhispMe.DTO;
+using WhispMe.DTO.DTOs;
 
 namespace WhispMe.API.Controllers;
 
