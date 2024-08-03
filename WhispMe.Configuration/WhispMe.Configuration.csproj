@@ -7,15 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\WhispMe.Configuration\WhispMe.Configuration.csproj" />
     <ProjectReference Include="..\WhispMe.DAL\WhispMe.DAL.csproj" />
     <ProjectReference Include="..\WhispMe.DTO\WhispMe.DTO.csproj" />
   </ItemGroup>
