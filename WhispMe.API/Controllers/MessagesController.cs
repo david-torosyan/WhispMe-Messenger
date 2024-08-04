@@ -39,6 +39,15 @@ public class MessagesController : ControllerBase
         return Ok(messages);
     }
 
+    [HttpGet]
+    [Route("PushMessage")]
+    public async Task<IActionResult> PushMessage(string message)
+    {
+        await _hubContext.Clients.All.SendAsync("ReceiveMessage", message);
+
+        return Ok("Done");
+    }
+
     [HttpPost]
     public async Task<ActionResult<Message>> Create(MessageDto viewModel)
     {

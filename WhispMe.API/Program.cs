@@ -29,6 +29,7 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IJwtTokenGenerator, JwtTokenGenerator>();
 builder.Services.AddScoped<IMessageService, MessageService>();
 builder.Services.AddScoped<IRoomService, RoomService>();
+// builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddLogging();
 
 builder.Services.AddSingleton(new MapperConfiguration(cfg =>
@@ -50,6 +51,19 @@ builder.Services.AddModSwaggerGen();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Configure CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigins",
+    builder =>
+    {
+        builder.WithOrigins("https://localhost:5001")
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .AllowCredentials();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -65,6 +79,8 @@ app.UseAuthentication();
 
 app.UseRouting();
 
+app.UseCors("AllowSpecificOrigins");
+
 app.UseAuthorization();
 
 // Custom middleware for logging requests
@@ -78,7 +94,6 @@ app.ConfigureExceptionLogging();
 
 app.MapControllers();
 
-// Map SignalR hubs
 app.MapHub<ChatHub>("/chathub");
 
 app.Run();

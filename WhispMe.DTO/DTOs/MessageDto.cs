@@ -13,7 +13,7 @@ public class MessageDto
 
     public string SenderEmail { get; set; }
 
-    public string SenderFullName{ get; set; }
+    public string SenderFullName { get; set; }
 
     public string Room { get; set; }
 
