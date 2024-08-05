@@ -4,7 +4,7 @@ namespace WhispMe.BLL.AuthInterfaces;
 
 public interface IAuthService
 {
-    Task<string> LoginAsync(LoginRequestDto loginRequestDto);
+    Task<LoginResponseDto> LoginAsync(LoginRequestDto loginRequestDto);
 
     Task<string> RegisterAsync(RegisterRequestDto registerRequestDto);
 }

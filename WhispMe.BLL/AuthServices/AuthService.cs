@@ -43,7 +43,7 @@ public class AuthService : IAuthService
         }
     }
 
-    public async Task<string> LoginAsync(LoginRequestDto loginRequestDto)
+    public async Task<LoginResponseDto> LoginAsync(LoginRequestDto loginRequestDto)
     {
         try
         {
@@ -55,7 +55,15 @@ public class AuthService : IAuthService
                 throw new UnauthorizedAccessException("Invalid email or password");
             }
 
-            return _jwtTokenGenerator.GenerateToken(user, user.Roles);
+            return new LoginResponseDto
+            {
+                Token = _jwtTokenGenerator.GenerateToken(user, user.Roles),
+                User = new UserDto
+                {
+                    FullName = user.FullName,
+                    Email = user.Email,
+                },
+            };
         }
         catch (Exception ex) when (ex is NotFoundException || ex is UnauthorizedAccessException)
         {

@@ -8,4 +8,3 @@ public class JwtOptions
 
     public string Audience { get; set; } = string.Empty;
 }
-

@@ -1,5 +1,8 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Security.Claims;
 using WhispMe.DTO.DTOs;
 using WhispMe.WEB.Models;
 
@@ -17,7 +20,7 @@ namespace WhispMe.WEB.Pages.Account
         [BindProperty]
         public LoginViewModel Input { get; set; }
 
-        public void OnGet()
+        public async Task OnGetAsync()
         {
         }
 
@@ -38,29 +41,51 @@ namespace WhispMe.WEB.Pages.Account
 
             if (response.IsSuccessStatusCode)
             {
-                var token = await response.Content.ReadAsStringAsync();
+                var loginResponse = await response.Content.ReadFromJsonAsync<LoginResponseDto>();
 
-                if (Input.RememberMe == true)
-                    SaveToken(token);
+                if (loginResponse != null)
+                {
+                    var claims = new List<Claim>
+                    {
+                        new (ClaimTypes.Email, Input.Email),
+                        new (ClaimTypes.Name, loginResponse.User.FullName)
+                    };
 
-                return RedirectToPage("/Index");
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                    var authProperties = new AuthenticationProperties
+                    {
+                        IsPersistent = Input.RememberMe
+                    };
+
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+
+                    // Set additional cookies if needed
+                    Response.Cookies.Append("userFullName", loginResponse.User.FullName, new CookieOptions
+                    {
+                        HttpOnly = false,
+                        Secure = true,
+                        SameSite = SameSiteMode.Strict
+                    });
+
+                    Response.Cookies.Append("userEmail", Input.Email, new CookieOptions
+                    {
+                        HttpOnly = false,
+                        Secure = true,
+                        SameSite = SameSiteMode.Strict
+                    });
+
+                    return RedirectToPage("/Index");
+                }
+
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                return Page();
             }
             else
             {
                 ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                 return Page();
             }
-        }
-
-        private void SaveToken(string token)
-        {
-            var cookieOptions = new CookieOptions
-            {
-                HttpOnly = true,
-                Secure = true,
-                Expires = DateTime.UtcNow.AddDays(7) // Adjust the expiration as needed
-            };
-            Response.Cookies.Append("jwt", token, cookieOptions);
         }
     }
 }

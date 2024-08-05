@@ -1,15 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace WhispMe.DTO.DTOs;
 
 public class MessageDto
 {
-    public string Id { get; set; }
+    public string? Id { get; set; }
 
     [Required]
     public string Content { get; set; }
 
-    public DateTime Timestamp { get; set; }
+    public DateTime? Timestamp { get; set; }
 
     public string SenderEmail { get; set; }
 
@@ -17,5 +18,5 @@ public class MessageDto
 
     public string Room { get; set; }
 
-    public string Avatar { get; set; }
+    public string? Avatar { get; set; }
 }

@@ -4,12 +4,84 @@
     ViewData["Title"] = "Home page";
 }
 
-<h1>Chat</h1>
-<form id="messageForm">
-    <input type="text" id="message" placeholder="Your message" required />
-    <button type="submit">Send</button>
-</form>
-<ul id="messagesList"></ul>
+<div class="container">
+    <div class="row">
+        <nav class="menu">
+            <ul class="items">
+                <li class="item">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                </li>
+                <li class="item">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                </li>
+                <li class="item">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </li>
+                <li class="item item-active">
+                    <i class="fa fa-commenting" aria-hidden="true"></i>
+                </li>
+                <li class="item">
+                    <i class="fa fa-file" aria-hidden="true"></i>
+                </li>
+                <li class="item">
+                    <i class="fa fa-cog" aria-hidden="true"></i>
+                </li>
+            </ul>
+        </nav>
 
+        <section class="discussions">
+            <div class="discussion search">
+                <div class="searchbar">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input type="text" placeholder="Search..." />
+                </div>
+            </div>
+
+            @foreach (var item in Model.Rooms)
+            {
+                <div class="discussion disc" tag="@item.Name" id="discussion-@item.Name">
+                    <div class="photo" style="background-image: url(https://i.pinimg.com/originals/a9/26/52/a926525d966c9479c18d3b4f8e64b434.jpg);">
+                        <div class="online"></div>
+                    </div>
+                    <div class="desc-contact">
+                        <p class="name">@item.Name</p>
+                        <p class="message">Let's meet for a coffee or something today ?</p>
+                    </div>
+                    <div class="timer">3 min</div>
+                </div>
+            }
+
+            <div class="discussion message-active">
+                <div class="photo" style="background-image: url(https://i.pinimg.com/originals/a9/26/52/a926525d966c9479c18d3b4f8e64b434.jpg);">
+                    <div class="online"></div>
+                </div>
+                <div class="desc-contact">
+                    <p class="name">Dave Corlew</p>
+                    <p class="message">Let's meet for a coffee or something today ?</p>
+                </div>
+                <div class="timer">3 min</div>
+            </div>
+        </section>
+
+        <section class="chat" id="chat-content">
+            <div class="header-chat" id="header-chat" tag="#room1">
+                <i class="icon fa fa-user-o" aria-hidden="true"></i>
+                <p class="name"></p>
+                <i class="icon clickable fa fa-ellipsis-h right" aria-hidden="true"></i>
+            </div>
+            <div class="messages-chat" id="messages-chat">
+                @* Rendered By JS *@
+            </div>
+
+            <div class="footer-chat">
+                <i class="icon fa fa-smile-o clickable" style="font-size:25pt;" aria-hidden="true"></i>
+                <input type="text" id="message" class="write-message" placeholder="Type your message here" />
+                <i class="icon send fa fa-paper-plane-o clickable" id="messageButton" aria-hidden="true"></i>
+            </div>
+
+        </section>
+    </div>
+</div>
+<script src="~/lib/knockout/knockout-latest.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.11/signalr.min.js"></script>
 <script src="~/js/chat.js"></script>

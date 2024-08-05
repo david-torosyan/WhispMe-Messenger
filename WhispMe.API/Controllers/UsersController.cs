@@ -19,7 +19,7 @@ public class UsersController : ControllerBase
     [HttpPost("login")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> LoginAsync([FromBody] LoginRequestDto request)
+    public async Task<ActionResult<LoginResponseDto>> LoginAsync([FromBody] LoginRequestDto request)
     {
         if (request == null)
         {

@@ -41,9 +41,9 @@ public class MessagesController : ControllerBase
 
     [HttpGet]
     [Route("PushMessage")]
-    public async Task<IActionResult> PushMessage(string message)
+    public async Task<IActionResult> PushMessage(string user, string message)
     {
-        await _hubContext.Clients.All.SendAsync("ReceiveMessage", message);
+        await _hubContext.Clients.All.SendAsync("ReceiveMessage", user, message);
 
         return Ok("Done");
     }
@@ -52,7 +52,7 @@ public class MessagesController : ControllerBase
     public async Task<ActionResult<Message>> Create(MessageDto viewModel)
     {
         var msg = await _messageService.CreateAsync(viewModel);
-        if(msg == null)
+        if (msg == null)
             return BadRequest();
 
         return Ok(msg);
